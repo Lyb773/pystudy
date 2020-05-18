@@ -6,8 +6,9 @@ import math
 c = int(input()) #进货成本
 r = int(input()) #单位零售价
 N = int(input()) #需求的个数
+s = int(input()) #单位残值
 plist = []
-for i in range(9):
+for i in range(N + 1):
     plist.append(float(input()))
 
 exp = 0
@@ -19,12 +20,12 @@ for q in range(N + 1):
     sum = 0
     D = 0.0
     for p in range(q + 1):
-        exp = r*p - c*q
+        exp = r * p - c * q + s * (q - p)
         if p != q:
-            sum += plist[p]*exp
+            sum += plist[p] * exp
             D += plist[p]
         else:
-            sum += (1 - D)*exp
+            sum += (1 - D) * exp
             break
     if sum > maxP:
         maxP = sum
